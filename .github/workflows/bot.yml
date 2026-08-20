@@ -1,0 +1,25 @@
+name: Fenerbahce Yabanci Basin Botu
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu indir
+        uses: actions/checkout@v4
+
+      - name: Python kurulumu
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Kutuphaneleri yukle
+        run: pip install feedparser
+
+      - name: Botu calistir
+        run: python bot.py
